@@ -16,9 +16,43 @@ import {
 } from "@/components/ui/sidebar";
 
 import Examples from "@/components/ui/areaChartComponent";
+import { useEffect, useState } from "react";
+import { fetchBitcoinPrice } from "@/lib/fetchBitcoinPrice";
 
+const data: SideBar = {
+  navMain: [
+    {
+      title: "Home",
+      url: "/",
+      items: [
+        {
+          title: "Dashboard",
+          url: "/users/dashboard",
+        },
+        {
+          title: "Loans",
+          url: "/users/loans",
+        },
+      ],
+    },
+  ],
+};
 
 export default function Page() {
+  const [bitcoinPrice, setBitcoinPrice] = useState<number | null>(null);
+
+  useEffect(() => {
+    async function getPrice() {
+      const price = await fetchBitcoinPrice();
+      setBitcoinPrice(price);
+    }
+
+    getPrice();
+    const interval = setInterval(getPrice, 30000); // Refresh every 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <SidebarProvider
       style={
@@ -27,7 +61,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar />
+      <AppSidebar data={data} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 px-4">
           <SidebarTrigger className="-ml-1" />
