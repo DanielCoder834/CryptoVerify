@@ -20,6 +20,9 @@ const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
+  crypto: z.string().min(2, {
+    message: "Username must be at least 2 characters.",
+  }),
 });
 
 export function ProfileForm() {
@@ -28,6 +31,7 @@ export function ProfileForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
+      crypto: "",
     },
   });
 
@@ -56,13 +60,21 @@ export function ProfileForm() {
                 </FormDescription>
                 <FormMessage />
               </FormItem>
+            </div>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="crypto"
+          render={({ field }) => (
+            <div>
               <FormItem>
-                <FormLabel>Collateral Crypto</FormLabel>
+                <FormLabel>Crypto Type</FormLabel>
                 <FormControl>
-                  <Input placeholder="Crypto" {...field} />
+                  <Input placeholder="$" type="" {...field} />
                 </FormControl>
                 <FormDescription>
-                  This is your desired crypto for the loan collateral.
+                  This is your crypto collateral
                 </FormDescription>
                 <FormMessage />
               </FormItem>

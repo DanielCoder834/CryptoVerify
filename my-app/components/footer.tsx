@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -9,7 +9,9 @@ export default function Footer() {
             <Link href="/" className="text-2xl font-bold">
               CryptoLTV
             </Link>
-            <p className="mt-2 text-sm text-gray-400">© 2023 CryptoLTV. All rights reserved.</p>
+            <p className="mt-2 text-sm text-gray-400">
+              © 2023 CryptoLTV. All rights reserved.
+            </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-4">
             <Link href="/about" className="hover:text-gray-300">
@@ -28,6 +30,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
