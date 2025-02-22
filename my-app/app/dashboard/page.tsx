@@ -14,7 +14,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+
 import Examples from "@/components/ui/areaChartComponent";
+
 
 export default function Page() {
   return (
