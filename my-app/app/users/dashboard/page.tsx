@@ -16,7 +16,9 @@ import {
 } from "@/components/ui/sidebar";
 
 import Examples from "@/components/ui/areaChartComponent";
-<<<<<<< HEAD:my-app/app/users/dashboard/page.tsx
+import { useEffect, useState } from "react";
+import { fetchBitcoinPrice } from "@/lib/fetchBitcoinPrice";
+
 const data: SideBar = {
   navMain: [
     {
@@ -35,11 +37,6 @@ const data: SideBar = {
     },
   ],
 };
-=======
-import { useEffect, useState } from "react";
-import { fetchBitcoinPrice } from "@/lib/fetchBitcoinPrice";
-
->>>>>>> auth:my-app/app/dashboard/page.tsx
 
 export default function Page() {
 
