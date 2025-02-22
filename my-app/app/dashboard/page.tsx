@@ -16,9 +16,26 @@ import {
 } from "@/components/ui/sidebar";
 
 import Examples from "@/components/ui/areaChartComponent";
+import { useEffect, useState } from "react";
+import { fetchBitcoinPrice } from "@/lib/fetchBitcoinPrice";
 
 
 export default function Page() {
+
+  const [bitcoinPrice, setBitcoinPrice] = useState<number | null>(null);
+
+  useEffect(() => {
+    async function getPrice() {
+      const price = await fetchBitcoinPrice();
+      setBitcoinPrice(price);
+    }
+
+    getPrice();
+    const interval = setInterval(getPrice, 30000); // Refresh every 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <SidebarProvider
       style={
@@ -67,9 +84,11 @@ export default function Page() {
                 </svg>
               </div>
               <div className="p-6 pt-0 h-[90%]">
-                <div className="text-2xl font-bold">$100,231.89</div>
+                <div className="text-2xl font-bold">
+                  {bitcoinPrice ? `$${bitcoinPrice.toLocaleString()}` : "Loading..."}
+                </div>
                 <p className="text-xs text-muted-foreground justify-end flex flex-col h-[80%]">
-                  +20.1% from last month
+                  Updated every 30s
                 </p>
               </div>
             </div>
