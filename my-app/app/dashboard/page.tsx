@@ -14,7 +14,13 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+<<<<<<< HEAD
 import Examples from "@/components/ui/areaChartComponent";
+=======
+
+import { AreaChart } from "@/components/areachart";
+>>>>>>> auth
+
 
 export default function Page() {
   return (
