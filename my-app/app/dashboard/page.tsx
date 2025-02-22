@@ -39,6 +39,7 @@ const data: SideBar = {
 };
 
 export default function Page() {
+
   const [bitcoinPrice, setBitcoinPrice] = useState<number | null>(null);
 
   useEffect(() => {
@@ -70,12 +71,12 @@ export default function Page() {
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
                 <BreadcrumbLink href="#">
-                  Building Your Application
+                  Finances
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                <BreadcrumbPage>Loans</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -101,9 +102,11 @@ export default function Page() {
                 </svg>
               </div>
               <div className="p-6 pt-0 h-[90%]">
-                <div className="text-2xl font-bold">$100,231.89</div>
+                <div className="text-2xl font-bold">
+                  {bitcoinPrice ? `$${bitcoinPrice.toLocaleString()}` : "Loading..."}
+                </div>
                 <p className="text-xs text-muted-foreground justify-end flex flex-col h-[80%]">
-                  +20.1% from last month
+                  Updated every 30s
                 </p>
               </div>
             </div>
