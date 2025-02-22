@@ -27,11 +27,11 @@ const data: SideBar = {
       items: [
         {
           title: "Dashboard",
-          url: "/users/dashboard",
+          url: "/dashboard",
         },
         {
           title: "Loans",
-          url: "/users/loans",
+          url: "/loans",
         },
       ],
     },
