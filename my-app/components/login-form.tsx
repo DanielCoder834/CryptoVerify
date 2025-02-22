@@ -1,17 +1,27 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "lucide-react";
+import { useState } from "react";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"form">) {
+  let [email, setEmail] = useState("");
+  let banks = ["chasebanks", "alliant", "citizenbank"];
+  let splitAtEmail = email.split("@");
+  let splitEmail = splitAtEmail[1] ? splitAtEmail[1].split(".") : "";
   return (
     <form
       className={cn("flex flex-col gap-6", className)}
-      action={"/dashboard"}
+      action={
+        splitEmail[0] && banks.includes(splitEmail[0])
+          ? "banks/dashboard"
+          : "users/dashboard"
+      }
       {...props}
     >
       <div className="flex flex-col items-center gap-2 text-center">
@@ -23,7 +33,12 @@ export function LoginForm({
       <div className="grid gap-6">
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" />
+          <Input
+            id="email"
+            type="email"
+            placeholder="m@example.com"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="grid gap-2">
           <div className="flex items-center">

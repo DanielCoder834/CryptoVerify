@@ -23,29 +23,7 @@ export interface SideBarData {
 export interface SideBar {
   navMain: SideBarData[];
 }
-// This is sample data.
-// const data = {
-//   navMain: [
-//     {
-//       title: "Home",
-//       url: "/",
-//       items: [
-//         {
-//           title: "Dashboard",
-//           url: "/dashboard",
-//         },
-//         {
-//           title: "Loan Application",
-//           url: "/loans",
-//         },
-//         // {
-//         //   title: "Structure",
-//         //   url: "#",
-//         // },
-//       ],
-//     },
-//   ],
-// };
+
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   data: SideBar;
 }
