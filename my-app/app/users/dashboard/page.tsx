@@ -16,7 +16,24 @@ import {
 } from "@/components/ui/sidebar";
 
 import Examples from "@/components/ui/areaChartComponent";
-
+const data: SideBar = {
+  navMain: [
+    {
+      title: "Home",
+      url: "/",
+      items: [
+        {
+          title: "Dashboard",
+          url: "/users/dashboard",
+        },
+        {
+          title: "Loans",
+          url: "/users/loans",
+        },
+      ],
+    },
+  ],
+};
 
 export default function Page() {
   return (
@@ -27,7 +44,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar />
+      <AppSidebar data={data} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 px-4">
           <SidebarTrigger className="-ml-1" />

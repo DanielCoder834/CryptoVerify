@@ -1,6 +1,6 @@
 "use client";
 
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar, SideBar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,6 +24,25 @@ import {
 } from "@radix-ui/react-accordion";
 import { ProfileForm } from "@/components/ui/loanform";
 
+const data: SideBar = {
+  navMain: [
+    {
+      title: "Home",
+      url: "/",
+      items: [
+        {
+          title: "Dashboard",
+          url: "/users/dashboard",
+        },
+        {
+          title: "Loans",
+          url: "/users/loans",
+        },
+      ],
+    },
+  ],
+};
+
 export default function Page() {
   return (
     <SidebarProvider
@@ -33,7 +52,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar />
+      <AppSidebar data={data} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 px-4">
           <SidebarTrigger className="-ml-1" />
