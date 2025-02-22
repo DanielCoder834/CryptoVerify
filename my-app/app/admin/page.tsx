@@ -1,5 +1,5 @@
 "use client";
-import { AppSidebar, SideBar, SideBarData } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -16,22 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 
 import Examples from "@/components/ui/areaChartComponent";
-import { unknown } from "zod";
 
-const data: SideBar = {
-  navMain: [
-    {
-      title: "Home",
-      url: "/",
-      items: [
-        {
-          title: "Dashboard",
-          url: "/banks/dashboard",
-        },
-      ],
-    },
-  ],
-};
 
 export default function Page() {
   return (
@@ -42,7 +27,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar data={data} />
+      <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 px-4">
           <SidebarTrigger className="-ml-1" />
