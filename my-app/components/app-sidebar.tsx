@@ -18,21 +18,21 @@ import {
 const data = {
   navMain: [
     {
-      title: "Getting Started",
-      url: "#",
+      title: "Home",
+      url: "/",
       items: [
         {
-          title: "Installation",
-          url: "#",
+          title: "Dashboard",
+          url: "/dashboard",
         },
         {
-          title: "Project Structure",
-          url: "#",
+          title: "Loan Application",
+          url: "/loans",
         },
-        {
-          title: "Structure",
-          url: "#",
-        },
+        // {
+        //   title: "Structure",
+        //   url: "#",
+        // },
       ],
     },
   ],
