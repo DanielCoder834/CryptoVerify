@@ -27,11 +27,11 @@ const data: SideBar = {
       items: [
         {
           title: "Dashboard",
-          url: "/users/dashboard",
+          url: "/dashboard",
         },
         {
           title: "Loans",
-          url: "/users/loans",
+          url: "/loans",
         },
       ],
     },
@@ -70,12 +70,12 @@ export default function Page() {
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
                 <BreadcrumbLink href="#">
-                  Building Your Application
+                  Finances
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                <BreadcrumbPage>Loans</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

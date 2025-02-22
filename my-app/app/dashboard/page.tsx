@@ -27,11 +27,11 @@ const data: SideBar = {
       items: [
         {
           title: "Dashboard",
-          url: "/users/dashboard",
+          url: "/dashboard",
         },
         {
           title: "Loans",
-          url: "/users/loans",
+          url: "/loans",
         },
       ],
     },
@@ -39,6 +39,7 @@ const data: SideBar = {
 };
 
 export default function Page() {
+
   const [bitcoinPrice, setBitcoinPrice] = useState<number | null>(null);
 
   useEffect(() => {
@@ -70,12 +71,12 @@ export default function Page() {
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
                 <BreadcrumbLink href="#">
-                  Building Your Application
+                  Finances
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                <BreadcrumbPage>Loans</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -101,16 +102,18 @@ export default function Page() {
                 </svg>
               </div>
               <div className="p-6 pt-0 h-[90%]">
-                <div className="text-2xl font-bold">$100,231.89</div>
+                <div className="text-2xl font-bold">
+                  {bitcoinPrice ? `$${bitcoinPrice.toLocaleString()}` : "Loading..."}
+                </div>
                 <p className="text-xs text-muted-foreground justify-end flex flex-col h-[80%]">
-                  +20.1% from last month
+                  Updated every 30s
                 </p>
               </div>
             </div>
             <div className="aspect-video rounded-xl bg-muted/50">
               <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className="tracking-tight text-sm font-medium">
-                  Total Crypto Score
+                  Account Info
                 </div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +138,7 @@ export default function Page() {
             <div className="aspect-video rounded-xl bg-muted/50">
               <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className="tracking-tight text-sm font-medium">
-                  Total Interest Per Month
+                  Account Balance
                 </div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

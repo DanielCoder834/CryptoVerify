@@ -40,7 +40,7 @@ export function AppSidebar({ data, ...props }: AppSidebarProps) {
                   <GalleryVerticalEnd className="size-4" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Wallet</span>
+                  <span className="font-semibold">Bank</span>
                   {/* <span className="">v1.0.0</span> */}
                 </div>
               </a>
