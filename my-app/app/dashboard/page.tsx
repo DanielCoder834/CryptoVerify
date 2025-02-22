@@ -16,47 +16,9 @@ import {
 } from "@/components/ui/sidebar";
 
 import Examples from "@/components/ui/areaChartComponent";
-<<<<<<< HEAD:my-app/app/users/dashboard/page.tsx
-const data: SideBar = {
-  navMain: [
-    {
-      title: "Home",
-      url: "/",
-      items: [
-        {
-          title: "Dashboard",
-          url: "/users/dashboard",
-        },
-        {
-          title: "Loans",
-          url: "/users/loans",
-        },
-      ],
-    },
-  ],
-};
-=======
-import { useEffect, useState } from "react";
-import { fetchBitcoinPrice } from "@/lib/fetchBitcoinPrice";
 
->>>>>>> auth:my-app/app/dashboard/page.tsx
 
 export default function Page() {
-
-  const [bitcoinPrice, setBitcoinPrice] = useState<number | null>(null);
-
-  useEffect(() => {
-    async function getPrice() {
-      const price = await fetchBitcoinPrice();
-      setBitcoinPrice(price);
-    }
-
-    getPrice();
-    const interval = setInterval(getPrice, 30000); // Refresh every 30 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <SidebarProvider
       style={
@@ -65,7 +27,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar data={data} />
+      <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 px-4">
           <SidebarTrigger className="-ml-1" />
@@ -105,11 +67,9 @@ export default function Page() {
                 </svg>
               </div>
               <div className="p-6 pt-0 h-[90%]">
-                <div className="text-2xl font-bold">
-                  {bitcoinPrice ? `$${bitcoinPrice.toLocaleString()}` : "Loading..."}
-                </div>
+                <div className="text-2xl font-bold">$100,231.89</div>
                 <p className="text-xs text-muted-foreground justify-end flex flex-col h-[80%]">
-                  Updated every 30s
+                  +20.1% from last month
                 </p>
               </div>
             </div>
