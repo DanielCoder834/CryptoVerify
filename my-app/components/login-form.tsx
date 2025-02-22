@@ -19,8 +19,8 @@ export function LoginForm({
       className={cn("flex flex-col gap-6", className)}
       action={
         splitEmail[0] && banks.includes(splitEmail[0])
-          ? "banks/dashboard"
-          : "users/dashboard"
+          ? "/admin"
+          : "/dashboard"
       }
       {...props}
     >
@@ -70,7 +70,7 @@ export function LoginForm({
       </div>
       <div className="text-center text-sm">
         Don&apos;t have an account?{" "}
-        <a href="#" className="underline underline-offset-4">
+        <a href="/dashboard" className="underline underline-offset-4">
           Sign up
         </a>
       </div>
