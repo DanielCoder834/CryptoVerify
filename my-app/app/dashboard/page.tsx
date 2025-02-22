@@ -113,7 +113,7 @@ export default function Page() {
             <div className="aspect-video rounded-xl bg-muted/50">
               <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className="tracking-tight text-sm font-medium">
-                  Total Crypto Score
+                  Account Info
                 </div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +138,7 @@ export default function Page() {
             <div className="aspect-video rounded-xl bg-muted/50">
               <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className="tracking-tight text-sm font-medium">
-                  Total Interest Per Month
+                  Account Balance
                 </div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
