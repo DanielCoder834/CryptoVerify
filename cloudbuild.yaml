@@ -1,0 +1,50 @@
+steps:
+# Step 1: Install Python dependencies for Flask backend
+- name: 'gcr.io/cloud-builders/python'
+  id: 'Install Flask dependencies'
+  dir: 'flask-backend' # Path to Flask backend directory
+  args:
+  - 'pip'
+  - 'install'
+  - '-r'
+  - 'requirements.txt'
+
+# Step 2: Install Node.js and React dependencies
+- name: 'gcr.io/cloud-builders/npm'
+  id: 'Install React dependencies'
+  dir: 'react-frontend' # Path to React frontend directory
+  args:
+  - 'install'
+
+# Step 3: Build React app
+- name: 'gcr.io/cloud-builders/npm'
+  id: 'Build React app'
+  dir: 'react-frontend' # Path to React frontend directory
+  args:
+  - 'run'
+  - 'build'
+
+# Step 4: Deploy the Flask API to Google Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'Deploy Flask API'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    gcloud run deploy flask-api \
+      --source=flask-backend \
+      --platform managed \
+      --region us-central1 \
+      --allow-unauthenticated
+
+# Step 5: Deploy the React app to Firebase Hosting (or Google Cloud Storage)
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: 'Deploy React app to Firebase Hosting'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    firebase use --add  # Select Firebase project if needed
+    firebase deploy --only hosting
+
+timeout: 1200s # Optional: Set a timeout of 20 minutes for the build
