@@ -46,7 +46,7 @@ export default function AdminDashboardPage() {
               <Tabs defaultValue="loans" className="w-full">
                 <TabsList className="grid w-full grid-cols-3 mb-8">
                   <TabsTrigger value="loans">Loans</TabsTrigger>
-                  <TabsTrigger value="crypto">Crypto List</TabsTrigger>
+                  <TabsTrigger value="crypto">Wallet</TabsTrigger>
                   <TabsTrigger value="support">Support</TabsTrigger>
                 </TabsList>
                 <TabsContent value="loans">

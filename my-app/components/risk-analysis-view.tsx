@@ -15,9 +15,10 @@ const chartData = [
 ]
 
 const assets = [
-  { name: "BTC", amount: "$10,000" },
-  { name: "ETH", amount: "$50,000" },
-  { name: "USDT", amount: "$100,000" },
+  { name: "BTC", amount: "$30,000,000" },
+  { name: "USD", amount: "$100,000,000" },
+  { name: "HBAR", amount: "$15,000,000" },
+  { name: "BSL", amount: "$15,000,000" },
 ]
 
 const loans = [

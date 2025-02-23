@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const holdings = [
   { symbol: "BTC", amount: 10000 },
   { symbol: "ETH", amount: 50000 },
-  { symbol: "USDT", amount: 100000 },
+  { symbol: "HBAR", amount: 100000 },
 ];
 
 export function CryptoHoldings() {

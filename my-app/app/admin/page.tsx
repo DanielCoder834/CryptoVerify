@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { DollarSign, Headphones, LayoutDashboard, LogOut, PieChart, Settings, User } from "lucide-react"
+import { DollarSign, Headphones, LayoutDashboard, PieChart } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { AdminView } from "@/components/admin-view"
@@ -11,19 +11,29 @@ import { RiskAnalysisView } from "@/components/risk-analysis-view"
 import { SupportView } from "@/components/support-view"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
+import { useRouter } from "next/navigation";
+import { signOutUser } from "@/lib/firebase";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
 type TabType = "admin" | "risk" | "support"
 
 export default function BankDashboard() {
+  
   const [activeTab, setActiveTab] = useState<TabType>("admin")
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const handleLogout = async () => {
+    setLoading(true);
+    await signOutUser(); // Sign out from Firebase
+    router.push("/"); // Redirect to home page
+  };
 
   return (
     <div className="flex h-screen bg-[#f1f2f6]">
@@ -66,7 +76,7 @@ export default function BankDashboard() {
             {activeTab === "risk" && "Risk Analysis"}
             {activeTab === "support" && "Support Dashboard"}
           </h2>
-          <UserNav />
+          <UserNav handleLogout={handleLogout} loading={loading} />
         </header>
 
         <div className="p-8">
@@ -91,7 +101,7 @@ export default function BankDashboard() {
   )
 }
 
-function UserNav() {
+function UserNav({ handleLogout, loading }: { handleLogout: () => void, loading: boolean }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -107,20 +117,8 @@ function UserNav() {
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <User className="mr-2 h-4 w-4" />
-          <span>Profile</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Settings className="mr-2 h-4 w-4" />
-          <span>Settings</span>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-red-600">
-          <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
+        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+          {loading ? "Logging out..." : "Log Out"}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

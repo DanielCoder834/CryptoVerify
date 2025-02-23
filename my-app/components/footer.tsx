@@ -10,7 +10,7 @@ export default function Footer() {
               CryptoLTV
             </Link>
             <p className="mt-2 text-sm text-gray-400">
-              © 2023 CryptoLTV. All rights reserved.
+              © 2025 Crypto LTV. All rights reserved.
             </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-4">

@@ -43,6 +43,7 @@ export const loans = [
 ];
 
 export function LoansList() {
+
   return (
     <Card>
       <CardHeader>
