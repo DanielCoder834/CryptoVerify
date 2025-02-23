@@ -1,11 +1,57 @@
+"use client";
 import type React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { DollarSign, HandCoins } from "lucide-react";
-import { loans } from "./loan-list";
+import { useState, useEffect } from "react";
+import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 export default function LoanDetails({ slug }: any) {
+  const [loans, setLoans] = useState<any>([]);
+  const router = useRouter();
+
+  function acceptEndPoint() {
+    let amount = loans.find((loan: any) => loan.loanId == slug)?.loanAmount;
+
+    fetch("http://localhost:8080/api/form-delete-accept", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ loanId: slug, loanAmount: amount }),
+    });
+    router.back();
+  }
+  function rejectEndPoint() {
+    let amount = loans.find((loan: any) => loan.loanId == slug)?.loanAmount;
+
+    fetch("http://localhost:8080/api/form-delete-refund", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ loanId: slug, loanAmount: amount }),
+    });
+    router.back();
+  }
+  // console.log(slug);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("http://localhost:8080/api/form");
+        setLoans(await res.json());
+      } catch (e) {
+        console.error(e);
+        throw new Error("error in get request");
+      }
+    };
+
+    fetchData();
+  }, [setLoans]);
   return (
     <div className="min-h-screen bg-gray-50/50 p-4 md:p-6 lg:p-8">
       <div className="mx-auto max-w-4xl space-y-6">
@@ -65,14 +111,20 @@ export default function LoanDetails({ slug }: any) {
               <DetailRow label="Phone number" value="(202) 456-1111" />
               <DetailRow
                 label="Loan amount"
-                value={loans.find((loan) => loan.id == slug)?.amount}
+                value={
+                  loans &&
+                  loans.find((loan: any) => loan.loanId == slug)?.loanAmount
+                }
               />
               <DetailRow label="Loan type" value="Interest rate" />
               <DetailRow label="Interest rate" value="100%" />
               <DetailRow label="From date" value="12/31/2020" />
               <DetailRow
                 label="Due date"
-                value={loans.find((loan) => loan.id == slug)?.dueDate}
+                value={
+                  loans &&
+                  loans.find((loan: any) => loan.loanId == slug)?.dueDate
+                }
               />
               <DetailRow label="Risk rating" value="600/700" />
               <DetailRow
@@ -82,13 +134,27 @@ export default function LoanDetails({ slug }: any) {
                     variant="outline"
                     className="bg-green-50 text-green-600 border-green-200"
                   >
-                    {loans.find((loan) => loan.id == slug)?.status}
+                    {loans &&
+                      loans.find((loan: any) => loan.loanId == slug)?.status}
                   </Badge>
                 }
               />
             </div>
           </CardContent>
         </Card>
+      </div>
+      <div className="h-full mt-[3rem] flex">
+        <div className="w-[50%] mx-20">
+          {" "}
+          <Button className="w-full bg-green-800" onClick={acceptEndPoint}>
+            Accept
+          </Button>
+        </div>
+        <div className="w-[50%] mx-20">
+          <Button className="w-full bg-red-800" onClick={rejectEndPoint}>
+            Reject
+          </Button>
+        </div>
       </div>
     </div>
   );
