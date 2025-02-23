@@ -2,19 +2,19 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDJE1SykzerLBgMrs9NCj47qevXIDRgi7w",
-    authDomain: "crypto-ltv.firebaseapp.com",
-    projectId: "crypto-ltv",
-    storageBucket: "crypto-ltv.firebasestorage.app",
-    messagingSenderId: "169616109453",
-    appId: "1:169616109453:web:2fceff3f33af6b451817c4"
-  };
+  apiKey: "FIREBASE_API_KEY",
+  authDomain: "FIREBASE_AUTH_DOMAIN",
+  projectId: "FIREBASE_PROJECT_ID",
+  storageBucket: "FIREBASE_STORAGE_BUCKET",
+  messagingSenderId: "FIREBASE_MESSAGING_SENDER_ID",
+  appId: "FIREBASE_APP_ID",
+};
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const provider = new GoogleAuthProvider();
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-export const signInWithGoogle = async () => {
+const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, provider);
     return result.user;
@@ -23,6 +23,12 @@ export const signInWithGoogle = async () => {
   }
 };
 
-export const logout = async () => {
-  await signOut(auth);
+const signOutUser = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error(error);
+  }
 };
+
+export { auth, signInWithGoogle, signOutUser };

@@ -31,7 +31,7 @@ const data: SideBar = {
         },
         {
           title: "Loans",
-          url: "/dashboard/loans",
+          url: "/users/loans",
         },
       ],
     },
