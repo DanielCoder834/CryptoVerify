@@ -28,6 +28,7 @@ import { TermSheet } from "@/components/term-sheet";
 const formSchema = z.object({
   loanAmount: z.string().min(1, "Loan amount is required"),
   loanTerm: z.string().min(1, "Loan term is required"),
+  cryptoCurrency: z.string().min(1, "CryptoCurrency is required"),
   purpose: z.string().min(1, "Loan purpose is required"),
   income: z.string().min(1, "Annual income is required"),
   name: z.string().min(1, "Full name is required"),
@@ -40,6 +41,7 @@ const formSchema = z.object({
 
 const defaultValues = {
   loanAmount: "",
+  cryptoCurrency: "HBAR",
   loanTerm: "",
   purpose: "",
   income: "",
@@ -162,6 +164,32 @@ export function LoanTab() {
                   <FormControl>
                     <Input placeholder="Enter your address" {...field} />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="cryptoCurrency"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Cryptocurrency</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Cryptocurrency" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="HBAR">Hedera</SelectItem>
+                      {/* <SelectItem value="BTC">Bitcoin</SelectItem>
+                      <SelectItem value="ETH">Ethereum</SelectItem> */}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
