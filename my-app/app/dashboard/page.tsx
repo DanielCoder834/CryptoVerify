@@ -1,5 +1,5 @@
 "use client";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar, SideBar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -39,7 +39,6 @@ const data: SideBar = {
 };
 
 export default function Page() {
-
   const [bitcoinPrice, setBitcoinPrice] = useState<number | null>(null);
 
   useEffect(() => {
@@ -70,9 +69,7 @@ export default function Page() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Finances
-                </BreadcrumbLink>
+                <BreadcrumbLink href="#">Finances</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
@@ -103,7 +100,9 @@ export default function Page() {
               </div>
               <div className="p-6 pt-0 h-[90%]">
                 <div className="text-2xl font-bold">
-                  {bitcoinPrice ? `$${bitcoinPrice.toLocaleString()}` : "Loading..."}
+                  {bitcoinPrice
+                    ? `$${bitcoinPrice.toLocaleString()}`
+                    : "Loading..."}
                 </div>
                 <p className="text-xs text-muted-foreground justify-end flex flex-col h-[80%]">
                   Updated every 30s

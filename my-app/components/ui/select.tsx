@@ -166,7 +166,7 @@ export const SelectComponent = ({
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder={data.placeholder} />
       </SelectTrigger>
-      <SelectContent ref={ref}>
+      <SelectContent>
         <SelectGroup>
           <SelectLabel>{data.label}</SelectLabel>
           {data.values.map((str) => (

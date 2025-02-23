@@ -4,27 +4,32 @@
 "use client";
 
 // IMP START - Quick Start
-import { CHAIN_NAMESPACES, IAdapter, IProvider, WEB3AUTH_NETWORK } from "@web3auth/base";
+import {
+  CHAIN_NAMESPACES,
+  IAdapter,
+  IProvider,
+  WEB3AUTH_NETWORK,
+} from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { getDefaultExternalAdapters } from "@web3auth/default-evm-adapter";
 import { Web3Auth, Web3AuthOptions } from "@web3auth/modal";
 // IMP END - Quick Start
 import { useEffect, useState } from "react";
-import Header from "@/components/header"
-import Hero from "@/components/hero"
-import Features from "@/components/features"
-import CTA from "@/components/cta"
-import Footer from "@/components/footer"
+import Header from "@/components/header";
+import Hero from "@/components/hero";
+import Features from "@/components/features";
+import CTA from "@/components/cta";
+import Footer from "@/components/footer";
 import Link from "next/link";
 
 // IMP START - Blockchain Calls
-import RPC from "./ethersRPC";
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
 // IMP END - Blockchain Calls
 
 // IMP START - Dashboard Registration
-const clientId = "BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ"; // get from https://dashboard.web3auth.io
+const clientId =
+  "BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ"; // get from https://dashboard.web3auth.io
 // IMP END - Dashboard Registration
 
 // IMP START - Chain Config
@@ -51,7 +56,7 @@ const web3AuthOptions: Web3AuthOptions = {
   clientId,
   web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_MAINNET,
   privateKeyProvider,
-}
+};
 const web3auth = new Web3Auth(web3AuthOptions);
 // IMP END - SDK Initialization
 
@@ -63,7 +68,9 @@ function App() {
     const init = async () => {
       try {
         // IMP START - Configuring External Wallets
-        const adapters = await getDefaultExternalAdapters({ options: web3AuthOptions });
+        const adapters = await getDefaultExternalAdapters({
+          options: web3AuthOptions,
+        });
         adapters.forEach((adapter: IAdapter<unknown>) => {
           web3auth.configureAdapter(adapter);
         });
@@ -112,42 +119,42 @@ function App() {
 
   // IMP START - Blockchain Calls
   // Check the RPC file for the implementation
-  const getAccounts = async () => {
-    if (!provider) {
-      uiConsole("provider not initialized yet");
-      return;
-    }
-    const address = await RPC.getAccounts(provider);
-    uiConsole(address);
-  };
+  // const getAccounts = async () => {
+  //   if (!provider) {
+  //     uiConsole("provider not initialized yet");
+  //     return;
+  //   }
+  //   const address = await RPC.getAccounts(provider);
+  //   uiConsole(address);
+  // };
 
-  const getBalance = async () => {
-    if (!provider) {
-      uiConsole("provider not initialized yet");
-      return;
-    }
-    const balance = await RPC.getBalance(provider);
-    uiConsole(balance);
-  };
+  // const getBalance = async () => {
+  //   if (!provider) {
+  //     uiConsole("provider not initialized yet");
+  //     return;
+  //   }
+  //   const balance = await RPC.getBalance(provider);
+  //   uiConsole(balance);
+  // };
 
-  const signMessage = async () => {
-    if (!provider) {
-      uiConsole("provider not initialized yet");
-      return;
-    }
-    const signedMessage = await RPC.signMessage(provider);
-    uiConsole(signedMessage);
-  };
+  // const signMessage = async () => {
+  //   if (!provider) {
+  //     uiConsole("provider not initialized yet");
+  //     return;
+  //   }
+  //   const signedMessage = await RPC.signMessage(provider);
+  //   uiConsole(signedMessage);
+  // };
 
-  const sendTransaction = async () => {
-    if (!provider) {
-      uiConsole("provider not initialized yet");
-      return;
-    }
-    uiConsole("Sending Transaction...");
-    const transactionReceipt = await RPC.sendTransaction(provider);
-    uiConsole(transactionReceipt);
-  };
+  // const sendTransaction = async () => {
+  //   if (!provider) {
+  //     uiConsole("provider not initialized yet");
+  //     return;
+  //   }
+  //   uiConsole("Sending Transaction...");
+  //   const transactionReceipt = await RPC.sendTransaction(provider);
+  //   uiConsole(transactionReceipt);
+  // };
   // IMP END - Blockchain Calls
 
   function uiConsole(...args: any[]): void {
@@ -167,22 +174,22 @@ function App() {
           </button>
         </div>
         <div>
-          <button onClick={getAccounts} className="card">
+          <button onClick={() => console.log("hi")} className="card">
             Get Accounts
           </button>
         </div>
         <div>
-          <button onClick={getBalance} className="card">
+          <button onClick={() => console.log("hi")} className="card">
             Get Balance
           </button>
         </div>
         <div>
-          <button onClick={signMessage} className="card">
+          <button onClick={() => console.log("hi")} className="card">
             Sign Message
           </button>
         </div>
         <div>
-          <button onClick={sendTransaction} className="card">
+          <button onClick={() => console.log("hi")} className="card">
             Send Transaction
           </button>
         </div>

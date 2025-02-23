@@ -13,39 +13,33 @@ except ImportError:
 
 from config.config import Config
 
-def get_hedera_client(account_id=None, private_key=None):
+def get_hedera_client(account_id, private_key):
     """
-    Creates a Hedera client to connect to testnet or mainnet,
-    using either a custom account_id/private_key or the operator credentials.
-    We parse the private key string into a PrivateKey object.
+    Creates a Hedera client using the provided credentials.
+    Raises an Exception if credentials are not provided.
     """
     if not HEDERA_SDK_AVAILABLE:
         raise Exception("Hedera Python SDK not installed or unavailable.")
 
-    # Decide if we're on testnet or mainnet based on Config
+    # Determine the network: testnet or mainnet.
     if Config.HEDERA_NETWORK.lower() == "mainnet":
         client = Client.forMainnet()
     else:
         client = Client.forTestnet()
 
-    # If custom credentials (e.g., for user or bank), parse them.
-    if account_id and private_key:
-        # Convert string to PrivateKey
-        parsed_key = PrivateKey.fromString(private_key)
-        client.setOperator(AccountId.fromString(account_id), parsed_key)
-    else:
-        # Otherwise, fallback to optional OPERATOR_ID/OPERATOR_KEY
-        if Config.OPERATOR_ID and Config.OPERATOR_KEY:
-            op_key = PrivateKey.fromString(Config.OPERATOR_KEY)
-            client.setOperator(AccountId.fromString(Config.OPERATOR_ID), op_key)
+    if not (account_id and private_key):
+        raise Exception("Account ID and private key must be provided.")
 
+    # Convert the private key string into a PrivateKey object.
+    parsed_key = PrivateKey.fromString(private_key)
+    client.setOperator(AccountId.fromString(account_id), parsed_key)
     return client
 
 def get_account_balance(account_id):
-    """
-    Returns the HBAR balance (in whole HBAR) of the specified Hedera account.
-    """
-    client = get_hedera_client()
+    """Returns the HBAR balance (in whole HBAR) of the specified account."""
+    # For balance queries, you must supply the account credentials explicitly.
+    # You can adjust this function as needed.
+    client = get_hedera_client(Config.USER_ACCOUNT_ID, Config.USER_PRIVATE_KEY)
     query = AccountBalanceQuery().setAccountId(AccountId.fromString(account_id))
     result = query.execute(client)
     # Convert from tinybars to full HBAR
@@ -56,7 +50,6 @@ def transfer_hbar(source_id, source_key, dest_id, amount_hbar):
     Transfers `amount_hbar` HBAR from source_id to dest_id.
     Returns (transaction_id, receipt_status).
     """
-    # We parse the source_key into a PrivateKey so setOperator can accept it.
     client = get_hedera_client(source_id, source_key)
 
     transaction = (

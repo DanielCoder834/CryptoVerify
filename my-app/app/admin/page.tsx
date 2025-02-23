@@ -1,5 +1,5 @@
 "use client";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar, SideBar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -69,9 +69,7 @@ export default function Page() {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Finances
-                </BreadcrumbLink>
+                <BreadcrumbLink href="#">Finances</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
