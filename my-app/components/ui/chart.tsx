@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client"
 
 import * as React from "react"
@@ -33,48 +32,11 @@ function useChart() {
   }
 
   return context
-=======
-"use client";
-
-import * as React from "react";
-import * as RechartsPrimitive from "recharts";
-
-import { cn } from "@/lib/utils";
-
-// Format: { THEME_NAME: CSS_SELECTOR }
-const THEMES = { light: "", dark: ".dark" } as const;
-
-export type ChartConfig = {
-  [k in string]: {
-    label?: React.ReactNode;
-    icon?: React.ComponentType;
-  } & (
-    | { color?: string; theme?: never }
-    | { color?: never; theme: Record<keyof typeof THEMES, string> }
-  );
-};
-
-type ChartContextProps = {
-  config: ChartConfig;
-};
-
-const ChartContext = React.createContext<ChartContextProps | null>(null);
-
-function useChart() {
-  const context = React.useContext(ChartContext);
-
-  if (!context) {
-    throw new Error("useChart must be used within a <ChartContainer />");
-  }
-
-  return context;
->>>>>>> refs/remotes/origin/main
 }
 
 const ChartContainer = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
-<<<<<<< HEAD
     config: ChartConfig
     children: React.ComponentProps<
       typeof RechartsPrimitive.ResponsiveContainer
@@ -83,16 +45,6 @@ const ChartContainer = React.forwardRef<
 >(({ id, className, children, config, ...props }, ref) => {
   const uniqueId = React.useId()
   const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`
-=======
-    config: ChartConfig;
-    children: React.ComponentProps<
-      typeof RechartsPrimitive.ResponsiveContainer
-    >["children"];
-  }
->(({ id, className, children, config, ...props }, ref) => {
-  const uniqueId = React.useId();
-  const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`;
->>>>>>> refs/remotes/origin/main
 
   return (
     <ChartContext.Provider value={{ config }}>
@@ -111,30 +63,17 @@ const ChartContainer = React.forwardRef<
         </RechartsPrimitive.ResponsiveContainer>
       </div>
     </ChartContext.Provider>
-<<<<<<< HEAD
   )
 })
 ChartContainer.displayName = "Chart"
-=======
-  );
-});
-ChartContainer.displayName = "Chart";
->>>>>>> refs/remotes/origin/main
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
     ([, config]) => config.theme || config.color
-<<<<<<< HEAD
   )
 
   if (!colorConfig.length) {
     return null
-=======
-  );
-
-  if (!colorConfig.length) {
-    return null;
->>>>>>> refs/remotes/origin/main
   }
 
   return (
@@ -148,13 +87,8 @@ ${colorConfig
   .map(([key, itemConfig]) => {
     const color =
       itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
-<<<<<<< HEAD
       itemConfig.color
     return color ? `  --color-${key}: ${color};` : null
-=======
-      itemConfig.color;
-    return color ? `  --color-${key}: ${color};` : null;
->>>>>>> refs/remotes/origin/main
   })
   .join("\n")}
 }
@@ -163,35 +97,20 @@ ${colorConfig
           .join("\n"),
       }}
     />
-<<<<<<< HEAD
   )
 }
 
 const ChartTooltip = RechartsPrimitive.Tooltip
-=======
-  );
-};
-
-const ChartTooltip = RechartsPrimitive.Tooltip;
->>>>>>> refs/remotes/origin/main
 
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
     React.ComponentProps<"div"> & {
-<<<<<<< HEAD
       hideLabel?: boolean
       hideIndicator?: boolean
       indicator?: "line" | "dot" | "dashed"
       nameKey?: string
       labelKey?: string
-=======
-      hideLabel?: boolean;
-      hideIndicator?: boolean;
-      indicator?: "line" | "dot" | "dashed";
-      nameKey?: string;
-      labelKey?: string;
->>>>>>> refs/remotes/origin/main
     }
 >(
   (
@@ -212,7 +131,6 @@ const ChartTooltipContent = React.forwardRef<
     },
     ref
   ) => {
-<<<<<<< HEAD
     const { config } = useChart()
 
     const tooltipLabel = React.useMemo(() => {
@@ -227,29 +145,12 @@ const ChartTooltipContent = React.forwardRef<
         !labelKey && typeof label === "string"
           ? config[label as keyof typeof config]?.label || label
           : itemConfig?.label
-=======
-    const { config } = useChart();
-
-    const tooltipLabel = React.useMemo(() => {
-      if (hideLabel || !payload?.length) {
-        return null;
-      }
-
-      const [item] = payload;
-      const key = `${labelKey || item.dataKey || item.name || "value"}`;
-      const itemConfig = getPayloadConfigFromPayload(config, item, key);
-      const value =
-        !labelKey && typeof label === "string"
-          ? config[label as keyof typeof config]?.label || label
-          : itemConfig?.label;
->>>>>>> refs/remotes/origin/main
 
       if (labelFormatter) {
         return (
           <div className={cn("font-medium", labelClassName)}>
             {labelFormatter(value, payload)}
           </div>
-<<<<<<< HEAD
         )
       }
 
@@ -258,16 +159,6 @@ const ChartTooltipContent = React.forwardRef<
       }
 
       return <div className={cn("font-medium", labelClassName)}>{value}</div>
-=======
-        );
-      }
-
-      if (!value) {
-        return null;
-      }
-
-      return <div className={cn("font-medium", labelClassName)}>{value}</div>;
->>>>>>> refs/remotes/origin/main
     }, [
       label,
       labelFormatter,
@@ -276,7 +167,6 @@ const ChartTooltipContent = React.forwardRef<
       labelClassName,
       config,
       labelKey,
-<<<<<<< HEAD
     ])
 
     if (!active || !payload?.length) {
@@ -284,15 +174,6 @@ const ChartTooltipContent = React.forwardRef<
     }
 
     const nestLabel = payload.length === 1 && indicator !== "dot"
-=======
-    ]);
-
-    if (!active || !payload?.length) {
-      return null;
-    }
-
-    const nestLabel = payload.length === 1 && indicator !== "dot";
->>>>>>> refs/remotes/origin/main
 
     return (
       <div
@@ -305,15 +186,9 @@ const ChartTooltipContent = React.forwardRef<
         {!nestLabel ? tooltipLabel : null}
         <div className="grid gap-1.5">
           {payload.map((item, index) => {
-<<<<<<< HEAD
             const key = `${nameKey || item.name || item.dataKey || "value"}`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
             const indicatorColor = color || item.payload.fill || item.color
-=======
-            const key = `${nameKey || item.name || item.dataKey || "value"}`;
-            const itemConfig = getPayloadConfigFromPayload(config, item, key);
-            const indicatorColor = color || item.payload.fill || item.color;
->>>>>>> refs/remotes/origin/main
 
             return (
               <div
@@ -372,7 +247,6 @@ const ChartTooltipContent = React.forwardRef<
                   </>
                 )}
               </div>
-<<<<<<< HEAD
             )
           })}
         </div>
@@ -383,47 +257,23 @@ const ChartTooltipContent = React.forwardRef<
 ChartTooltipContent.displayName = "ChartTooltip"
 
 const ChartLegend = RechartsPrimitive.Legend
-=======
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-);
-ChartTooltipContent.displayName = "ChartTooltip";
-
-const ChartLegend = RechartsPrimitive.Legend;
->>>>>>> refs/remotes/origin/main
 
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> &
     Pick<RechartsPrimitive.LegendProps, "payload" | "verticalAlign"> & {
-<<<<<<< HEAD
       hideIcon?: boolean
       nameKey?: string
-=======
-      hideIcon?: boolean;
-      nameKey?: string;
->>>>>>> refs/remotes/origin/main
     }
 >(
   (
     { className, hideIcon = false, payload, verticalAlign = "bottom", nameKey },
     ref
   ) => {
-<<<<<<< HEAD
     const { config } = useChart()
 
     if (!payload?.length) {
       return null
-=======
-    const { config } = useChart();
-
-    if (!payload?.length) {
-      return null;
->>>>>>> refs/remotes/origin/main
     }
 
     return (
@@ -436,13 +286,8 @@ const ChartLegendContent = React.forwardRef<
         )}
       >
         {payload.map((item) => {
-<<<<<<< HEAD
           const key = `${nameKey || item.dataKey || "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
-=======
-          const key = `${nameKey || item.dataKey || "value"}`;
-          const itemConfig = getPayloadConfigFromPayload(config, item, key);
->>>>>>> refs/remotes/origin/main
 
           return (
             <div
@@ -463,7 +308,6 @@ const ChartLegendContent = React.forwardRef<
               )}
               {itemConfig?.label}
             </div>
-<<<<<<< HEAD
           )
         })}
       </div>
@@ -471,15 +315,6 @@ const ChartLegendContent = React.forwardRef<
   }
 )
 ChartLegendContent.displayName = "ChartLegend"
-=======
-          );
-        })}
-      </div>
-    );
-  }
-);
-ChartLegendContent.displayName = "ChartLegend";
->>>>>>> refs/remotes/origin/main
 
 // Helper to extract item config from a payload.
 function getPayloadConfigFromPayload(
@@ -488,11 +323,7 @@ function getPayloadConfigFromPayload(
   key: string
 ) {
   if (typeof payload !== "object" || payload === null) {
-<<<<<<< HEAD
     return undefined
-=======
-    return undefined;
->>>>>>> refs/remotes/origin/main
   }
 
   const payloadPayload =
@@ -500,25 +331,15 @@ function getPayloadConfigFromPayload(
     typeof payload.payload === "object" &&
     payload.payload !== null
       ? payload.payload
-<<<<<<< HEAD
       : undefined
 
   let configLabelKey: string = key
-=======
-      : undefined;
-
-  let configLabelKey: string = key;
->>>>>>> refs/remotes/origin/main
 
   if (
     key in payload &&
     typeof payload[key as keyof typeof payload] === "string"
   ) {
-<<<<<<< HEAD
     configLabelKey = payload[key as keyof typeof payload] as string
-=======
-    configLabelKey = payload[key as keyof typeof payload] as string;
->>>>>>> refs/remotes/origin/main
   } else if (
     payloadPayload &&
     key in payloadPayload &&
@@ -526,20 +347,12 @@ function getPayloadConfigFromPayload(
   ) {
     configLabelKey = payloadPayload[
       key as keyof typeof payloadPayload
-<<<<<<< HEAD
     ] as string
-=======
-    ] as string;
->>>>>>> refs/remotes/origin/main
   }
 
   return configLabelKey in config
     ? config[configLabelKey]
-<<<<<<< HEAD
     : config[key as keyof typeof config]
-=======
-    : config[key as keyof typeof config];
->>>>>>> refs/remotes/origin/main
 }
 
 export {
@@ -549,8 +362,4 @@ export {
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
-<<<<<<< HEAD
 }
-=======
-};
->>>>>>> refs/remotes/origin/main
