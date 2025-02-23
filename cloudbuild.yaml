@@ -2,7 +2,7 @@ steps:
 # Step 1: Install Python dependencies for Flask backend
 - name: 'gcr.io/cloud-builders/python'
   id: 'Install Flask dependencies'
-  dir: 'flask-backend' # Path to Flask backend directory
+  dir: 'lend-backend' # Path to Flask backend directory
   args:
   - 'pip'
   - 'install'
@@ -12,14 +12,15 @@ steps:
 # Step 2: Install Node.js and React dependencies
 - name: 'gcr.io/cloud-builders/npm'
   id: 'Install React dependencies'
-  dir: 'react-frontend' # Path to React frontend directory
+  dir: 'my-app' # Path to React frontend directory
   args:
+  - 'npm'
   - 'install'
 
 # Step 3: Build React app
 - name: 'gcr.io/cloud-builders/npm'
   id: 'Build React app'
-  dir: 'react-frontend' # Path to React frontend directory
+  dir: 'my-app' # Path to React frontend directory
   args:
   - 'run'
   - 'build'
