@@ -249,6 +249,7 @@ export function LoanTab() {
             />
 
             <Button type="submit" className="w-full bg-[#939ef3] hover:bg-[#7f63f1]">
+                <ConfettiButton />
               Submit Application
             </Button>
           </form>
