@@ -72,7 +72,11 @@
 
     --sidebar-border: 220 13% 91%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --brand: 27 96% 61%;
+
+    --brand-foreground: 31 97% 72%}
   .dark {
 
     --background: 0 0% 3.9%;
@@ -138,7 +142,9 @@
 
     --sidebar-border: 240 3.7% 15.9%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%}
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --brand: 31 97% 72%}
 }
 
 

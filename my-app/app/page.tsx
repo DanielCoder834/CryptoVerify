@@ -12,6 +12,7 @@ import { Web3Auth, Web3AuthOptions } from "@web3auth/modal";
 import { useEffect, useState } from "react";
 import Header from "@/components/header"
 import Hero from "@/components/hero"
+// import HeroSection from "@/components/blocks/hero-section";
 import Features from "@/components/features"
 import CTA from "@/components/cta"
 import Footer from "@/components/footer"

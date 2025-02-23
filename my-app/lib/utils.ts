@@ -11,6 +11,12 @@ export function cx(...args: ClassValue[]) {
   return twMerge(clsx(...args));
 }
 
+// export function cn(...inputs: (string | undefined | null)[]): string {
+//   return inputs.filter(Boolean).join(" ")
+// }
+
+
+
 // Tremor Raw focusInput [v0.0.1]
 
 export const focusInput = [
