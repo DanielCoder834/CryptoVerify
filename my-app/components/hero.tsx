@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
@@ -10,15 +10,18 @@ export default function Hero() {
             Unlock the Value of Your Crypto Assets
           </h1>
           <p className="text-xl sm:text-2xl mb-8">
-            Get instant loans using your cryptocurrency as collateral. No credit checks, low interest rates, and
-            flexible terms.
+            Get instant loans using your cryptocurrency as collateral. No credit
+            checks, low interest rates, and flexible terms.
           </p>
-          <Button asChild size="lg" className="bg-white text-purple-600 hover:bg-gray-100">
-            <Link href="/get-started">Get Started</Link>
+          <Button
+            asChild
+            size="lg"
+            className="bg-white text-purple-600 hover:bg-gray-100"
+          >
+            <Link href="/dashboard">Get Started</Link>
           </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }
-
