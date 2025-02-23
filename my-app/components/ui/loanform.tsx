@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { SelectComponent, SelectData } from "@/components/ui/select";
 
 const CryptoEnum = z.enum(["Bitcoin", "Ethereum", "Hedera"]);
 type CryptoEnum = z.infer<typeof CryptoEnum>;

@@ -1,7 +1,7 @@
-import Link from "next/link"
-import { FileText, Home } from "lucide-react"
+import Link from "next/link";
+import { FileText, Home } from "lucide-react";
 
-export function MainNav({ activeTab, onTabChange }) {
+export function MainNav({ activeTab, onTabChange }: any) {
   return (
     <nav className="w-[240px] border-r border-[#f1f2f6] p-6 space-y-2">
       <div className="mb-8">
@@ -28,6 +28,5 @@ export function MainNav({ activeTab, onTabChange }) {
         <span>Details</span>
       </Link>
     </nav>
-  )
+  );
 }
-

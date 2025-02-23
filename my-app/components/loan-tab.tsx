@@ -1,13 +1,22 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem } from "@radix-ui/react-select";
 
 const formSchema = z.object({
   loanAmount: z.string().min(1, "Loan amount is required"),
@@ -17,7 +26,7 @@ const formSchema = z.object({
   terms: z.boolean().refine((val) => val === true, {
     message: "You must accept the terms and conditions",
   }),
-})
+});
 
 export function LoanTab() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -25,10 +34,10 @@ export function LoanTab() {
     defaultValues: {
       terms: false,
     },
-  })
+  });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    console.log(values);
   }
 
   return (
@@ -58,7 +67,10 @@ export function LoanTab() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Loan Term</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select loan term" />
@@ -83,7 +95,10 @@ export function LoanTab() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Loan Purpose</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select loan purpose" />
@@ -122,27 +137,34 @@ export function LoanTab() {
               render={({ field }) => (
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border border-[#f1f2f6] p-4">
                   <FormControl>
-                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>Terms and Conditions</FormLabel>
                     <FormDescription>
-                      By checking this box, you agree to our terms of service and privacy policy. You acknowledge that
-                      your loan application will be subject to credit approval and that the final loan terms may vary
-                      based on your creditworthiness.
+                      By checking this box, you agree to our terms of service
+                      and privacy policy. You acknowledge that your loan
+                      application will be subject to credit approval and that
+                      the final loan terms may vary based on your
+                      creditworthiness.
                     </FormDescription>
                   </div>
                 </FormItem>
               )}
             />
 
-            <Button type="submit" className="w-full bg-[#939ef3] hover:bg-[#7f63f1]">
+            <Button
+              type="submit"
+              className="w-full bg-[#939ef3] hover:bg-[#7f63f1]"
+            >
               Submit Application
             </Button>
           </form>
         </Form>
       </div>
     </div>
-  )
+  );
 }
-
