@@ -14,7 +14,6 @@ steps:
   id: 'Install React dependencies'
   dir: 'my-app' # Path to React frontend directory
   args:
-  - 'npm'
   - 'install'
 
 # Step 3: Build React app
