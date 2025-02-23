@@ -6,6 +6,7 @@ from routes.balance_routes import balance_bp
 from routes.rate_routes import rate_bp
 from routes.transfer_routes import transfer_bp
 
+
 def create_app():
     """
     Creates and configures the Flask application,
@@ -27,8 +28,9 @@ def create_app():
 
     return app
 
+
 # Run directly from app.py
 if __name__ == "__main__":
     flask_app = create_app()
     # The app will run on http://127.0.0.1:5000 by default
-    flask_app.run(host="0.0.0.0", port=5000)
+    flask_app.run(host="0.0.0.0", port=8080)

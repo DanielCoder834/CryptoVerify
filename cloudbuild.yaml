@@ -33,10 +33,11 @@ steps:
   - '-c'
   - |
     gcloud run deploy flask-api \
-      --source=flask-backend \
+      --source=lend-backend \
       --platform managed \
       --region us-central1 \
-      --allow-unauthenticated
+      --allow-unauthenticated \
+      --set-env-vars=GOOGLE_ENTRYPOINT="gunicorn main:app"
 
 # Step 5: Deploy the React app to Firebase Hosting (or Google Cloud Storage)
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
