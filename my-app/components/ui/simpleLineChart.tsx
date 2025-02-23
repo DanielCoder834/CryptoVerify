@@ -10,17 +10,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export interface SimpleLineChartData {
+export interface SimpleLineChartBankData {
   name: string;
-  uv: number;
-  pv: number;
+  profit: number;
   amt: number;
 }
 
 export default function SimpleLineChart({
   data,
 }: {
-  data: SimpleLineChartData[];
+  data: SimpleLineChartBankData[];
 }) {
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -42,11 +41,10 @@ export default function SimpleLineChart({
         <Legend />
         <Line
           type="monotone"
-          dataKey="pv"
+          dataKey="profit"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
       </LineChart>
     </ResponsiveContainer>
   );

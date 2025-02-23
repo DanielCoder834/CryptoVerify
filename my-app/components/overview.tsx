@@ -1,21 +1,21 @@
 "use client";
 import SimpleLineChart, {
-  SimpleLineChartData,
+  SimpleLineChartBankData,
 } from "@/components/ui/simpleLineChart";
 
-const data: SimpleLineChartData[] = [
-  { name: "Jan", uv: 12.5, pv: 200, amt: 300 },
-  { name: "Feb", uv: 15.0, pv: 250, amt: 350 },
-  { name: "Mar", uv: 14.8, pv: 230, amt: 330 },
-  { name: "Apr", uv: 18.5, pv: 280, amt: 380 },
-  { name: "May", uv: 20.0, pv: 300, amt: 400 },
-  { name: "Jun", uv: 22.2, pv: 320, amt: 420 },
-  { name: "Jul", uv: 24.8, pv: 350, amt: 450 },
-  { name: "Aug", uv: 25.0, pv: 360, amt: 460 },
-  { name: "Sep", uv: 23.6, pv: 340, amt: 440 },
-  { name: "Oct", uv: 21.3, pv: 310, amt: 410 },
-  { name: "Nov", uv: 19.1, pv: 290, amt: 390 },
-  { name: "Dec", uv: 17.9, pv: 270, amt: 370 },
+const data: SimpleLineChartBankData[] = [
+  { name: "Jan", profit: 500000, amt: 600000 },
+  { name: "Feb", profit: 520000, amt: 620000 },
+  { name: "Mar", profit: 510000, amt: 615000 },
+  { name: "Apr", profit: 550000, amt: 650000 },
+  { name: "May", profit: 580000, amt: 680000 },
+  { name: "Jun", profit: 600000, amt: 700000 },
+  { name: "Jul", profit: 650000, amt: 750000 },
+  { name: "Aug", profit: 670000, amt: 770000 },
+  { name: "Sep", profit: 640000, amt: 740000 },
+  { name: "Oct", profit: 620000, amt: 720000 },
+  { name: "Nov", profit: 610000, amt: 710000 },
+  { name: "Dec", profit: 590000, amt: 690000 },
 ];
 
 export function Overview() {
