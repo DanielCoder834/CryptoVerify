@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { SelectComponent, SelectData } from "@/components/ui/select";
 
 const CryptoEnum = z.enum(["Bitcoin", "Ethereum", "Hedera"]);
 type CryptoEnum = z.infer<typeof CryptoEnum>;
@@ -43,7 +42,7 @@ export default function LoanForm() {
     console.log(values);
   }
 
-  let data: SelectData = {
+  let data = {
     placeholder: "",
     label: "Select Your Crypto Collateral",
     values: ["Bitcoin", "Ethereum", "Hedera"],
@@ -78,7 +77,7 @@ export default function LoanForm() {
               <FormItem>
                 <FormLabel>Crypto Type</FormLabel>
                 <FormControl>
-                  <SelectComponent data={data} ref={field.ref} />
+                  {/* <SelectComponent data={data} ref={field.ref} /> */}
                   {/* <Input placeholder="BTC/ETH" type="" {...field} /> */}
                 </FormControl>
                 <FormDescription>

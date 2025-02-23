@@ -1,8 +1,10 @@
 "use client";
 import LoanDetails from "@/components/loan-details";
+import { Params } from "next/dist/server/request/params";
 import { useEffect, useState } from "react";
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
+type paramsType = Promise<{ slug: string }>;
+export default function ServicePage({ params }: { params: paramsType }) {
   const [slug, setSlog] = useState("");
 
   useEffect(() => {
