@@ -1,8 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
-const loans = [
+export const loans = [
   {
     id: "243242432",
     amount: 102000,
@@ -75,9 +76,11 @@ export function LoansList() {
                 >
                   {loan.status}
                 </Badge>
-                <Button variant="secondary" size="sm">
-                  Review
-                </Button>
+                <Link href={`/admin/loan-info/${loan.id}`} id="services-link">
+                  <Button variant="secondary" size="sm">
+                    Review
+                  </Button>
+                </Link>
               </div>
             </div>
           ))}
