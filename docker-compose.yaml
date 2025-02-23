@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./lend_backend
+    ports:
+      - "8081:8081"
+    environment:
+      - FLASK_ENV=production
+    volumes:
+      - ./lend_backend:/app
+    networks:
+      - app-network
+
+  frontend:
+    build: ./my-app
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://backend:8081 # Internal Docker network communication
+      - REACT_APP_PUBLIC_API_URL=http://localhost:8081 # For browser access
+    volumes:
+      - ./my-app/src:/app/src
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
