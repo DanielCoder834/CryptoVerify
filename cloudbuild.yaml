@@ -32,12 +32,16 @@ steps:
   args:
   - '-c'
   - |
-    gcloud run deploy flask-api \
-      --source=lend-backend \
+    gcloud run deploy crypto-verify \
+      --source=. \
       --platform managed \
       --region us-central1 \
-      --allow-unauthenticated \
-      --set-env-vars=GOOGLE_ENTRYPOINT="gunicorn main:app"
+      --port=8081 \
+      --timeout=300s \  # Max allowed timeout
+      --cpu=1 \
+      --memory=512Mi \
+      --set-env-vars=GUNICORN_CMD_ARGS="--workers=2 --timeout=120 --bind=0.0.0.0:8081" \
+      --set-env-vars=GOOGLE_ENTRYPOINT="gunicorn main:app""
 
 # Step 5: Deploy the React app to Firebase Hosting (or Google Cloud Storage)
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
