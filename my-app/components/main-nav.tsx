@@ -5,7 +5,7 @@ export function MainNav({ activeTab, onTabChange }: any) {
   return (
     <nav className="w-[240px] border-r border-[#f1f2f6] p-6 space-y-2">
       <div className="mb-8">
-        <h2 className="font-semibold text-xl">Crypto LTV</h2>
+        <h2 className="font-semibold text-xl">Horizon</h2>
       </div>
       <Link
         href="#"

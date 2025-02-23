@@ -21,7 +21,7 @@ export default function Header() {
             <path d="M4 6v12c0 1.1.9 2 2 2h14v-4" />
             <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z" />
           </svg>
-          <span className="text-xl font-bold">CryptoLTV</span>
+          <span className="text-xl font-bold">Horizon</span>
         </Link>
         <Button asChild>
           <Link href="/login">Login</Link>

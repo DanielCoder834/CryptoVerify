@@ -7,10 +7,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <Link href="/" className="text-2xl font-bold">
-              CryptoLTV
+              Horizon
             </Link>
             <p className="mt-2 text-sm text-gray-400">
-              © 2025 Crypto LTV. All rights reserved.
+              © 2025 Horizon. All rights reserved.
             </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-4">
